@@ -5,6 +5,19 @@
             <img src="./assets/img/placeholder.svg" width="35%"/>
             <h2 class="title is-4">Character details</h2> 
         </figure>
+        <div>
+            {{#each cleanData as |user|}}
+            <p>{{user.id}}</p>
+            <p>{{user.name}}</p>
+            {{#each user.chars as |char|}}
+            <h3>Characters</h3>
+            <p>{{char.name}}</p>
+            <p>{{char.name}}</p>
+            <p>{{char.name}}</p>
+            <img src="./assets/img/{{char.image}}.svg" width="30%">
+            {{/each}}
+            {{/each}}
+        </div>
         
     </section>
 </div>

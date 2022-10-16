@@ -1,0 +1,24 @@
+[
+    {
+      "name": "Miku Bear",
+      "hunger": 10,
+      "mood": "Happy",
+      "rarity": "Ultra Rare",
+      "image": "placeholder"
+    },
+    {
+      "name": "Miku Cat",
+      "hunger": 9,
+      "mood": "OK",
+      "rarity": "Common",
+      "image": "test1"
+    },
+    {
+      "name": "Miku Bird",
+      "hunger": 8,
+      "mood": "Tired",
+      "rarity": "Rare",
+      "image": "test2"
+    }
+  ]
+  
