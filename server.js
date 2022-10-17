@@ -4,6 +4,8 @@ const exphbs = require('express-handlebars');
 const path = require('path');
 const hbs = exphbs.create({});
 
+//might need to initialize sequelize here
+
 
 // Sets up the Express App
 const app = express();
@@ -20,3 +22,8 @@ app.use(require('./controllers/homeRoutes'));
 app.listen(PORT, () => {
   console.log('Server listening on: http://localhost:' + PORT);
 });
+
+// Test DB
+db.authenticate()
+  .then (() => console.log('Database connected...'))
+  .catch(err => console.log('Error: ' +err))
