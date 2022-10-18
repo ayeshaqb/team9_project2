@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "39mikuspersecond!",
+    "database": "miku_development",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "39mikuspersecond!",
+    "database": "miku_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "39mikuspersecond!",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
