@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS miku_DB;
-CREATE DATABASE miku_DB;
+DROP DATABASE IF EXISTS miku_development;
+CREATE DATABASE miku_development;

@@ -16,14 +16,9 @@ app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(require('./controllers/homeRoutes'));
+app.use(require('./controllers(old)/homeRoutes'));
 
 // Starts the server to begin listening
 app.listen(PORT, () => {
   console.log('Server listening on: http://localhost:' + PORT);
 });
-
-// Test DB
-db.authenticate()
-  .then (() => console.log('Database connected...'))
-  .catch(err => console.log('Error: ' +err))
