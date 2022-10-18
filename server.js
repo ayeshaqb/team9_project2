@@ -2,6 +2,7 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
 const path = require('path');
+
 const hbs = exphbs.create({});
 
 //might need to initialize sequelize here

@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { User, Character } = require('../models');
 // const withAuth = require('../utils/authorization');
-// inititalize sequelize
+// inititalize sequelize?
 router.get('/home', async (req, res) => {
     try {
         const userData = await User.findAll() 
