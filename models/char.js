@@ -1,25 +1,51 @@
-'use strict';
-const {Model} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class Char extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      Char.associate = (models) => {
-        Char.belongsToMany(models.User, { as: 'UsersForChar', through: models.TagCharUser, foreignKey: 'char_id'});
-      }
-    }
-  }
-  Char.init({
-    charName: DataTypes.STRING,
-    rarity: DataTypes.STRING,
-    image: DataTypes.STRING
-  }, {
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
+
+class Char extends Model {}
+
+Char.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    mood: {
+        type: DataTypes.INTEGER,
+        defaultValue: 50,
+    },
+    rarity: {
+        type: DataTypes.STRING,
+    },
+    date_collected: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    // user_id: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: 'user',
+    //     key: 'id',
+    //   },
+    
+  },
+  {
     sequelize,
-    modelName: 'Char',
-  });
-  return Char;
-};
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'chars',
+  }
+);
+
+module.exports = Char;

@@ -5,7 +5,7 @@ const path = require('path');
 
 const hbs = exphbs.create({});
 
-//might need to initialize sequelize here
+//might need to initialize sequelize here?
 
 
 // Sets up the Express App
