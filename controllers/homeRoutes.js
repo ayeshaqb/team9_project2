@@ -22,4 +22,8 @@ router.get('/visit', async (req, res) => {
     res.render('visit')
 });
 
+router.get('/lottery', async (req, res) => {
+    res.render('lottery')
+});
+
 module.exports = router;
