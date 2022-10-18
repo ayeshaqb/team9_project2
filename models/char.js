@@ -8,7 +8,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Char.associate = (models) => {
+        Char.belongsToMany(models.User, { as: 'UsersForChar', through: models.TagCharUser, foreignKey: 'char_id'});
+      }
     }
   }
   Char.init({
