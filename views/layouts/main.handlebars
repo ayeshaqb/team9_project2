@@ -9,8 +9,39 @@
 </head>
 <body>
     <header class="hero is-small is-warning">
-        <div class="hero-body">
+        <div class="hero-body level">
             <h1 class="title is-1">Site title</h1>
+            {{#if logged_in}}
+            <div class="dropdown is-hoverable level-right">
+                <div class="dropdown-trigger">
+                    <figure class="image is-128x128">
+                        <!-- use reference to image from data-->
+                        <img class="is-rounded" src="./assets/img/{{name}}.png">
+                    </figure>
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                <div class="dropdown-content">
+                    <a href="/home" class="dropdown-item">
+                        Home
+                    </a>
+                    <a href="/archive" class="dropdown-item">
+                        Archive
+                    </a>
+                    <a href="/visit" class="dropdown-item">
+                        Visit
+                    </a>
+                    <a href="/lottery" class="dropdown-item">
+                        Lottery
+                    </a>
+                    <hr class="dropdown-divider">
+                    {{!-- TODO create logout logic --}}
+                    <a href="#" class="dropdown-item">
+                        Logout
+                    </a>
+                </div>
+                </div>
+                </div>
+            {{/if}}
         </div>
     </header>
     <main  class="tile is-ancestor">

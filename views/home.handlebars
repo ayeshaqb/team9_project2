@@ -1,12 +1,13 @@
 <div class="tile is-parent">
     <section class="tile is-child">
-        <h3 class="tile tag title is-4">Greetings!</h3>
+        <h3 class="tile tag title is-4">Greetings, {{name}}!!</h3>
+        {{#if chars}}
         <figure class="box tile is-10">
             <img src="./assets/img/placeholder.svg" width="35%"/>
             <h2 class="title is-4">Character details</h2> 
         </figure>
         <div>
-            {{#each cleanData as |user|}}
+            {{!-- {{#each cleanData as |user|}}
             <p>{{user.id}}</p>
             <p>{{user.name}}</p>
             {{#each user.chars as |char|}}
@@ -16,8 +17,12 @@
             <p>{{char.name}}</p>
             <img src="./assets/img/{{char.image}}.svg" width="30%">
             {{/each}}
-            {{/each}}
+            {{/each}} --}}
         </div>
+        {{else}}
+        <h2>Choose a character</h2>
+        {{!-- TODO need first user login logic --}}
+        {{/if}}
         
     </section>
 </div>
