@@ -1,8 +1,10 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
+const session = require('express-session');
 const routes = require('./controllers');
+const helpers = require('./utils/helper');
+const hbs = exphbs.create({ helpers });
 const path = require('path');
-const hbs = exphbs.create({});
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
