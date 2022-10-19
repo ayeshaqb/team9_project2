@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Character } = require('../models');
+const { User, Character, CharUser } = require('../models');
 const withAuth = require('../utils/auth');
 const icon = require('../icon')
 
@@ -34,10 +34,38 @@ router.get('/home', withAuth, async (req, res) => {
     }
 });
 
+
 router.get('/visit', withAuth, async (req, res) => {
-    res.render('visit', {
-        logged_in: req.session.logged_in
-    })
+    try {
+        const userData = await User.findByPk(req.session.user_id, {
+          include: [
+            {
+              model: CharUser,
+            },
+            {
+              model: Character
+            }
+          ],
+        });
+    
+        if (!userData) {
+          res
+            .status(400)
+            .json({ message: 'Incorrect email or password, please try again' });
+          return;
+        }
+    
+        const serializedData = userData.get( { plain: true });
+        console.log(serializedData)
+    
+        res.render('visit', {
+            serializedData,
+            logged_in: req.session.logged_in
+        })
+      } catch (err) {
+        res.status(400).json(err);
+      }
+    
 });
 
 router.get('/lottery', withAuth, async (req, res) => {
@@ -47,9 +75,33 @@ router.get('/lottery', withAuth, async (req, res) => {
 });
 
 router.get('/archive', withAuth, async (req, res) => {
-    res.render('archive', {
-        logged_in: req.session.logged_in
-    })
+    try {
+        const userData = await User.findByPk(req.session.user_id, {
+          include: [
+            {
+              model: CharUser,
+            },
+            {
+              model: Character
+            }
+          ],
+        });
+        if (!userData) {
+          res
+            .status(400)
+            .json({ message: 'Incorrect email or password, please try again' });
+          return;
+        }
+        const serializedData = userData.get( { plain: true });
+        console.log(serializedData)
+    
+        res.render('archive', {
+            serializedData,
+            logged_in: req.session.logged_in
+        })
+      } catch (err) {
+        res.status(400).json(err);
+      }  
 });
 
 module.exports = router;
