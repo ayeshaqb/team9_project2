@@ -7,13 +7,6 @@
             <h2 class="title is-4">Character details</h2> 
             {{#each serializedData.charUsers as |char|}}
             <p>{{char.mood}}</p>
-           
-            {{/each}}
-             {{#each serializedData.chars as |char|}}
-            <p>{{char.name}}</p>
-            <figure class="box tile is-child">
-            <img src="./assets/img/{{char.image}}.jpg"/>
-            </figure>
             {{/each}}
             <a href="#" class="button"><h2 class="menu-item">Hug</h2></a>
             {{!-- <a href="#" class="button"><h2 class="menu-item">Play</h2></a>

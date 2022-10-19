@@ -4,7 +4,12 @@
       Your characters
     </p>
     <p class="subtitle">
-      Placeholder {{serializedData.name}}
+       {{#each serializedData.chars as |char|}}
+            <p>{{char.name}}</p>
+            <figure class="box tile is-child">
+            <img src="./assets/img/{{char.image}}.jpg"/>
+            </figure>
+        {{/each}}
     </p>
   </div>
 </section>
