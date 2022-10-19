@@ -1,6 +1,6 @@
 //file to go into model folder
-const { Model, DataTypes } = require('sequelize');
-const sequilize = require('/config/connection');
+const { UUIDV4, Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 
 class CharUser extends Model {}
 
@@ -11,7 +11,7 @@ CharUser.init(
 {
     charTag_id:{
         type: DataTypes.UUID,
-        defaultValue: DataTypes.INTEGER(11),
+        defaultValue: UUIDV4,
         primaryKey: true
     },
     character_id: {
@@ -34,11 +34,11 @@ CharUser.init(
     }
 },
 {
-    sequilize,
+    sequelize,
     timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName:'archive'
+    modelName:'charUser'
 }
 );
 

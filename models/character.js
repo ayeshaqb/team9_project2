@@ -20,9 +20,9 @@ Character.init(
       type: DataTypes.INTEGER,
     },
     //default value needed? also numerical value or text?
-    mood: {
-        type: DataTypes.STRING,
-    },
+    // mood: {
+    //     type: DataTypes.STRING,
+    // },
     // do we want numerical values or text (i.e. common, very rare, etc)
     rarity: {
         type: DataTypes.STRING,
