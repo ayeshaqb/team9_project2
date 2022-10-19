@@ -35,9 +35,10 @@
                     </a>
                     <hr class="dropdown-divider">
                     {{!-- TODO create logout logic --}}
-                    <a href="#" class="dropdown-item">
+                    <button class="dropdown-item" id="logout">Logout</button>
+                    {{!-- <a href="#" class="dropdown-item" id="logout">
                         Logout
-                    </a>
+                    </a> --}}
                 </div>
                 </div>
                 </div>
@@ -57,6 +58,8 @@
         </nav>
     {{{ body }}}
     </main>
-    
+     {{#if logged_in}}
+     <script src="/js/logout.js"></script>
+     {{/if}}
 </body>
 </html>
