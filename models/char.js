@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Char extends Model {}
+class Character extends Model {}
 
-Char.init(
+Character.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -16,7 +16,7 @@ Char.init(
       allowNull: false,
     },
     mood: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         defaultValue: 50,
     },
     rarity: {
@@ -31,21 +31,21 @@ Char.init(
       type: DataTypes.STRING,
       allowNull: false
     },
-    // user_id: {
-    //   type: DataTypes.INTEGER,
-    //   references: {
-    //     model: 'user',
-    //     key: 'id',
-    //   },
-    
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'user',
+        key: 'id',
+      },
+    },
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'chars',
+    modelName: 'Char',
   }
 );
 
-module.exports = Char;
+module.exports = Character;
