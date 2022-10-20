@@ -81,16 +81,22 @@ router.get('/lottery', withAuth, async (req, res) => {
 });
 
 router.get('/archive', withAuth, async (req, res) => {
-  try {
-    const userData = await Character.findAll(req.session.user_id, {
-      include: [
-        {
-          model: CharUser,
-        },
-        {
-          where: {
-            id: req.session.user_id
-          }
+    try {
+        const userData = await User.findByPk(req.session.user_id, {
+          include: [
+            {
+              model: CharUser,
+              include:[{model: Character}]
+            },
+
+          ],
+        });
+        if (!userData) {
+          res
+            .status(400)
+            .json({ message: 'Incorrect email or password, please try again' });
+          return;
+
         }
       ],
     });

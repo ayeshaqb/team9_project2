@@ -11,5 +11,8 @@
             </figure>
         {{/each}}
     </p>
+    {{#each serializedData.charUsers as |char|}}
+<p>mood: {{char.mood}}</p>
+    {{/each}}
   </div>
 </section>
