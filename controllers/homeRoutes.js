@@ -60,7 +60,7 @@ router.get('/visit', withAuth, async (req, res) => {
     
         res.render('visit', {
             serializedData,
-            logged_in: req.session.logged_in
+            logged_in: true
         })
       } catch (err) {
         res.status(400).json(err);
@@ -70,7 +70,7 @@ router.get('/visit', withAuth, async (req, res) => {
 
 router.get('/lottery', withAuth, async (req, res) => {
     res.render('lottery', {
-        logged_in: req.session.logged_in
+      logged_in: true
     })
 });
 
@@ -97,7 +97,7 @@ router.get('/archive', withAuth, async (req, res) => {
     
         res.render('archive', {
             serializedData,
-            logged_in: req.session.logged_in
+            logged_in: true
         })
       } catch (err) {
         res.status(400).json(err);
