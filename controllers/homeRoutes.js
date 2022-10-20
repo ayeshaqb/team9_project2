@@ -17,17 +17,22 @@ router.get('/signup', (req, res) => {
 
 router.get('/home', withAuth, async (req, res) => {
     try {
-        const userData = await User.findByPk(req.session.user_id, {
-            attributes: { exclude: ['password'] },
-            include: [{ model: Character}],
-        }) 
+      
+      const characterData = await Character.findAll()
+      const userData = await User.findByPk(req.session.user_id, {
+          attributes: { exclude: ['password'] },
+          include: [{ model:CharUser, include: [Character]}],
+      }) 
+
+        const characters = characterData.map((character)=> character.get({ plain: true }))
 
         const serializedData = userData.get({ plain: true });
-        console.log(serializedData)
+        console.log(serializedData.charUsers)
         icon(serializedData.name);
         res.render('home', {
-            ...serializedData,
-            logged_in: true
+            serializedData,
+            characters,
+            logged_in: req.session.logged_in
         });
     } catch (err) {
         res.status(500).json(err);
