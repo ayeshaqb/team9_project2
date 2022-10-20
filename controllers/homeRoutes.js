@@ -4,43 +4,44 @@ const withAuth = require('../utils/auth');
 const icon = require('../icon')
 
 router.get('/', async (req, res) => {
-  if (req.session.logged_in) {
-    res.redirect('/home');
-    return;
-  }
-  res.render('login');
+
+    if (req.session.logged_in) {
+        res.redirect('/home');
+        return;
+      }
+      res.render('login');
 });
 
 router.get('/signup', (req, res) => {
-  res.render('signup');
+    res.render('signup');
 });
 
 router.get('/home', withAuth, async (req, res) => {
-  try {
+    try {
+      
+      const characterData = await Character.findAll()
+      const userData = await User.findByPk(req.session.user_id, {
+          attributes: { exclude: ['password'] },
+          include: [{ model:CharUser, include: [Character]}],
+      }) 
 
-    const characterData = await Character.findAll()
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: CharUser, include: [Character] }],
-    })
+        const characters = characterData.map((character)=> character.get({ plain: true }))
 
-    const characters = characterData.map((character) => character.get({ plain: true }))
-
-    const serializedData = userData.get({ plain: true });
-    console.log(serializedData.charUsers)
-    icon(serializedData.name);
-    res.render('home', {
-      serializedData,
-      characters,
-      logged_in: req.session.logged_in
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
+        const serializedData = userData.get({ plain: true });
+        console.log(serializedData.charUsers)
+        icon(serializedData.name);
+        res.render('home', {
+            serializedData,
+            characters,
+            logged_in: req.session.logged_in
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
-
 router.get('/visit', withAuth, async (req, res) => {
+
   try {
     const userData = await User.findByPk(req.session.user_id, {
       include: [
@@ -97,7 +98,7 @@ router.get('/archive', withAuth, async (req, res) => {
     if (!userData) {
       res
         .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
+        .json({ message: 'No characters found' });
       return;
     }
     const serializedData = userData.get({ plain: true });

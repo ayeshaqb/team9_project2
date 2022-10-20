@@ -1,17 +1,35 @@
-<h2>Login</h2>
-
-<form class="form login-form">
-    <div class="form-group">
-        <label for="email-login">email:</label>
-        <input class="form-input" type="text" id="email-login" />
-    </div>
-    <div class="form-group">
-        <label for="password-login">password:</label>
-        <input class="form-input" type="password" id="password-login" />
-    </div>
-    <div class="form-group">
-        <button class="btn btn-primary" type="submit">login</button>
-    </div>
+<form class="login-page">
+  <br>
+  <div></div>
+  <br>
+  <div class="field">
+    <p class="control has-icons-left has-icons-right">
+      <input class="input" id="user-login-email" type="email" placeholder="Email">
+      <span class="icon is-small is-left">
+        <i class="fas fa-envelope"></i>
+      </span>
+      <span class="icon is-small is-right">
+        <i class="fas fa-check"></i>
+      </span>
+    </p>
+  </div>
+  <div class="field">
+    <p class="control has-icons-left">
+      <input class="input" id="user-login-password" type="password" placeholder="Password">
+      <span class="icon is-small is-left">
+        <i class="fas fa-lock"></i>
+      </span>
+    </p>
+  </div>
+  <div class="field">
+    <p class="control">
+      <button class="button is-warning" type="submit">
+        Login
+      </button>
+      </p>
+      <br>
+      <h4>Don't have an account? <a href="/signup">Sign up!</a></h4>
+      {{!-- <img src="./assets/img/Aaron.png" width="35%"/> --}}
+  </div>
 </form>
-
-<script src="/js/login.js"></script>
+<script src="./js/login.js"></script>
