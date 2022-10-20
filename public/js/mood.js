@@ -5,10 +5,6 @@ const moodHandler = async (event) => {
     let mood = parseInt(document.querySelector("#current-mood").textContent);
     mood++
 
-    console.log(user_id)
-    console.log(mood)
-    // console.log(updatedMood)
-  
     if (user_id && mood) {
       const response = await fetch(`/api/char/${user_id}`, {
         method: 'PUT',
