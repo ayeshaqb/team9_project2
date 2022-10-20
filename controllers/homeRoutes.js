@@ -26,9 +26,7 @@ router.get('/home', withAuth, async (req, res) => {
       }) 
 
         const characters = characterData.map((character)=> character.get({ plain: true }))
-
         const serializedData = userData.get({ plain: true });
-        console.log(serializedData.charUsers)
         icon(serializedData.name);
         res.render('home', {
             serializedData,
@@ -41,18 +39,30 @@ router.get('/home', withAuth, async (req, res) => {
 });
 
 router.get('/visit', withAuth, async (req, res) => {
-
-  try {
-    const userData = await User.findByPk(req.session.user_id, {
-      include: [
-        {
-          model: CharUser,
-        },
-        {
-          model: Character
+    try {
+        const userData = await User.findByPk(req.session.user_id, {
+          include: [{model: CharUser, include: [Character]}],
+        });
+        
+    
+        if (!userData) {
+          res
+            .status(400)
+            .json({ message: 'Error! Please try again!' });
+          return;
         }
-      ],
-    });
+    
+        const serializedData = userData.get( { plain: true });
+        res.render('visit', {
+            serializedData,
+            logged_in: true
+        })
+      } catch (err) {
+        res.status(400).json(err);
+      }
+    
+});
+
 
     if (!userData) {
       res
@@ -81,42 +91,28 @@ router.get('/lottery', withAuth, async (req, res) => {
 });
 
 router.get('/archive', withAuth, async (req, res) => {
-    try {
-        const userData = await User.findByPk(req.session.user_id, {
-          include: [
-            {
-              model: CharUser,
-              include:[{model: Character}]
-            },
-
-          ],
-        });
-        if (!userData) {
-          res
-            .status(400)
-            .json({ message: 'Incorrect email or password, please try again' });
-          return;
-
-        }
-      ],
-    });
-
-    if (!userData) {
-      res
-        .status(400)
-        .json({ message: 'No characters found' });
-      return;
-    }
-    const serializedData = userData.get({ plain: true });
-    console.log(serializedData)
-
-    res.render('archive', {
-      serializedData,
-      logged_in: true
-    })
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
+  try {
+      const charData = await Character.findAll();
+      const userData = await User.findByPk(req.session.user_id, {
+        attributes: { exclude: ['password'] },
+        include: [{ model:CharUser, include: [Character]}],
+      }) 
+      if (!userData) {
+        res
+          .status(400)
+          .json({ message: 'Error! Please try again!' });
+        return;
+      }
+      const serializedData = userData.get({ plain: true });
+      const characters = charData.map((character) => character.get( { plain: true }));
+      res.render('archive', {
+        characters,
+        serializedData,
+        logged_in: req.session.logged_in
+      })
+    } catch (err) {
+      res.status(400).json(err);
+    }  
+})
 
 module.exports = router; 
