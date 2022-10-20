@@ -25,8 +25,8 @@ router.get('/home', withAuth, async (req, res) => {
       }) 
 
         const characters = characterData.map((character)=> character.get({ plain: true }))
-
         const serializedData = userData.get({ plain: true });
+        //this is where i fix the icon
         console.log(serializedData.charUsers)
         icon(serializedData.name);
         res.render('home', {
@@ -39,19 +39,12 @@ router.get('/home', withAuth, async (req, res) => {
     }
 });
 
-
 router.get('/visit', withAuth, async (req, res) => {
     try {
         const userData = await User.findByPk(req.session.user_id, {
-          include: [
-            {
-              model: CharUser,
-            },
-            {
-              model: Character
-            }
-          ],
+          include: [{model: CharUser, include: [Character]}],
         });
+        
     
         if (!userData) {
           res
@@ -61,8 +54,12 @@ router.get('/visit', withAuth, async (req, res) => {
         }
     
         const serializedData = userData.get( { plain: true });
+        console.log("---------------------")
         console.log(serializedData)
-    
+        console.log("---------------------")
+        console.log(serializedData.charUsers)
+        
+  
         res.render('visit', {
             serializedData,
             logged_in: true
