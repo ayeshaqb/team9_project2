@@ -4,6 +4,7 @@ const withAuth = require('../utils/auth');
 const icon = require('../icon')
 
 router.get('/', async (req, res) => {
+
     if (req.session.logged_in) {
         res.redirect('/home');
         return;
@@ -62,10 +63,31 @@ router.get('/visit', withAuth, async (req, res) => {
     
 });
 
-router.get('/lottery', withAuth, async (req, res) => {
-    res.render('lottery', {
+
+    if (!userData) {
+      res
+        .status(400)
+        .json({ message: 'Incorrect email or password, please try again' });
+      return;
+    }
+
+    const serializedData = userData.get({ plain: true });
+    console.log(serializedData)
+
+    res.render('visit', {
+      serializedData,
       logged_in: true
     })
+  } catch (err) {
+    res.status(400).json(err);
+  }
+
+});
+
+router.get('/lottery', withAuth, async (req, res) => {
+  res.render('lottery', {
+    logged_in: true
+  })
 });
 
 router.get('/archive', withAuth, async (req, res) => {
@@ -93,4 +115,4 @@ router.get('/archive', withAuth, async (req, res) => {
     }  
 })
 
-module.exports = router;
+module.exports = router; 

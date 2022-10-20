@@ -1,3 +1,4 @@
+
 # Hatsune Miku Game
 
 ## Description
@@ -5,6 +6,7 @@ Create an application based around collecting Miku character. Users will be able
 
 ## Installation
 Installation requiers Node Packages by running `npm i` in the root directory and be sure to store MySQL credentials in a `.env` file (see `.env.EXAMPLE`). After the dependencies are installed and the MySQL database is created, the database can be seeded by running `node seeds/seed.js`. To run the application locally, run the command `npm start`. The application can also be deployed to Heroku.
+
 
 ## Usage
 User will sign in with an name, email, and a password to create an individual account. The user can then select their character in the home page.  
