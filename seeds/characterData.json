@@ -1,21 +1,21 @@
 [
     {
-      "name": "Miku Bear",
+      "name": "Halloween Miku",
       "hunger": 10,
       "rarity": "Ultra Rare",
-      "image": "placeholder"
+      "image": "halloweenmiku"
     },
     {
-      "name": "Miku Cat",
+      "name": "Space Miku",
       "hunger": 9,
       "rarity": "Common",
-      "image": "test1"
+      "image": "spacemiku"
     },
     {
-      "name": "Miku Bird",
+      "name": "Christmas Miku",
       "hunger": 8,
       "rarity": "Rare",
-      "image": "test2"
+      "image": "christmasmiku"
     }
   ]
   
