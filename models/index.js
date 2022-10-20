@@ -22,9 +22,9 @@ Character.hasMany(CharUser, {
   onDelete: 'CASCADE'
 });
 
-CharUser.belongsTo(Character, {
-  foreignKey: 'character_id',  
-});
+// CharUser.belongsTo(Character, {
+//   foreignKey: 'character_id',  
+// });
 
 CharUser.belongsTo(User, {
   foreignKey: 'user_id',

@@ -80,10 +80,9 @@ router.get('/archive', withAuth, async (req, res) => {
           include: [
             {
               model: CharUser,
+              include:[{model: Character}]
             },
-            {
-              model: Character
-            }
+
           ],
         });
         if (!userData) {

@@ -6,5 +6,8 @@
     <p class="subtitle">
       Placeholder {{serializedData.name}}
     </p>
+    {{#each serializedData.charUsers as |char|}}
+<p>mood: {{char.mood}}</p>
+    {{/each}}
   </div>
 </section>
